@@ -1,27 +1,39 @@
 #!/usr/bin/python
 import threading
+import time
 from socket import *
 
-def SendRecv(client,Command):
-	client.sendall(Command)
-	print client.recv(4096)
+nPORT = 24444
+nIP = "10.0.0.44"
 
+#########################################################
+# Functions
+
+def SendCMD(Command):
+	tClnt = socket(AF_INET,SOCK_STREAM)			# select socket type
+	tClnt.connect((nIP,nPORT))					# connect to the server
+
+	print ">",Command,"\n"
+	tClnt.sendall(Command)
+	print tClnt.recv(4096),"\n\n"
+	tClnt.close()
 	
 #########################################################
 # Main Program
-	
-mClient = socket(AF_INET,SOCK_STREAM)              # select socket type
-mClient.connect(("10.0.0.44",4444))              # connect to the server
 
 #data = raw_input("Client@deb:) ")    	  # get data from the user
 
 for i in range(1,90):
 	cmd = "ping -c 1 10.0.0."+str(i) 
-	#raw_input(cmd)
-	#client.sendall(cmd)
-	threading.Thread(target=SendRecv,args=(mClient,cmd,)).start()	
+	threading.Thread(target=SendCMD,args=(cmd,)).start()	
 
+#time.sleep(10)
+#print "Sleep 10......"
 
-mClient.sendall("Stop")
+cmd = "Stop"
+threading.Thread(target=SendCMD,args=(cmd,)).start()
+#time.sleep(1)
+#threading.Thread(target=SendCMD,args=(cmd,)).start()
+
 print "Stoping..."
-mClient.close() 
+
