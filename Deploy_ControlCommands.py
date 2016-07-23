@@ -1,6 +1,7 @@
 #!/usr/bin/python
 import threading
 from socket import *
+<<<<<<< HEAD
 from Deploy_ControlMemu import *
 
 # Get a single Satellite status (to be run in a thread)
@@ -117,3 +118,24 @@ def Satellite_Shut(SAList):
 		print " -Satellite: %s\t-Port: %s\t-Status: %s " % (SAList[I][0],SAList[I][1],SAList[I][2])
 
 	raw_input("Thread Done>>>")
+=======
+
+def SendRecv(SatI,Command):
+	Clnt = socket(AF_INET,SOCK_STREAM)
+	Clnt.connect((SatI[0], SatI[1]))
+	Clnt.sendall(Command)
+	if (Clnt.recv(4096) == "Successful"):
+		SatI[2] = "Online"
+	else:
+		SatI[2] = "Not Responding"
+	Clnt.close()
+	
+def Satalight_Status(SAList)
+	cmd = "Status"
+	for sal in SAList:
+		sal[2] = "Verifying"
+		print " -Satalight: %s\t-Port: %s\t-Status: %s " % (sal)
+		threading.Thread(target=SendRecv,args=(sal,cmd,)).start():
+
+		
+>>>>>>> bd8b1dad6e77b1f370cefeb1e57365b6070eee3f

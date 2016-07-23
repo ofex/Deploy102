@@ -1,6 +1,7 @@
 #!/usr/bin/python
 import os
 
+<<<<<<< HEAD
 SCR_Dir = os.path.dirname(__file__)
 
 def mnu_ClrPrtHeader():
@@ -40,3 +41,17 @@ def mnu_GetCommand():
 	Icommand = raw_input("\n\tEnter a Command or Q-uit> ").strip()
 	
 	return Icommand
+=======
+def Get_mmOption():
+	Dir = os.path.dirname(__file__)
+	with open(Dir+"/SCR-Control-MainMenu.scr") as mainF: mainS = mainF.read()
+
+	Mpick = "A"
+	while (Mpick not in "12345qQ") or Mpick=="":
+		os.system("clear")
+		print mainS
+		Mpick = raw_input("    Pick Option[#] or Q-uit> ")
+
+	return Mpick
+
+>>>>>>> bd8b1dad6e77b1f370cefeb1e57365b6070eee3f
