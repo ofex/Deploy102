@@ -1,0 +1,15 @@
+===========================================================
+ Python 102	name: Ofek	Time: [current time]
+===========================================================
+ Segment:			
+ Your DNS:
+ Your gateway:
+===========================================================
+
+ Menu
+    1.	Show all clients
+    2.	Send commands to all client
+    3.	Transfer file to clients all clients
+    4.	Install something on all clients
+    5.	Remove something from all clients
+
